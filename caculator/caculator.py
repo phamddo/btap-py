@@ -26,13 +26,16 @@ def click(value):
 
     current = entry.get()
 
-    if just_calculated and str(value).isdigit():
-        entry.delete(0, END)
-        current = ""
-        just_calculated = False
+    if just_calculated:
+        if str(value).isdigit() or value == ".":
+            entry.delete(0, END)
+            current = ""
+        else:
+            just_calculated = False
 
     entry.delete(0, END)
-    entry.insert(0, str(current) + str(value))
+    entry.insert(0, current + str(value))
+    just_calculated = False
 
 
 def clear():
